@@ -1,32 +1,25 @@
-// 2-insert.js
+// my comment
 
-// Import the MongoDB client
-var MongoClient = require('mongodb').MongoClient;
+// Connect to the MongoDB server
+var conn = new Mongo();
 
-// Connection URL
-var url = 'mongodb://127.0.0.1:27017/';
+// Get the database name from the command line arguments
+var dbName = arguments[0];
 
-// Get the database name from command line arguments
-var dbName = process.argv[2];
+// Switch to the specified database; create it if it doesn't exist
+var db = conn.getDB(dbName);
 
-// Connect to the server
-MongoClient.connect(url + dbName, function(err, client) {
-  if (err) throw err;
+// Print a message
+print("Switched to db " + dbName);
 
-  // Get the reference to the database
-  var db = client.db(dbName);
+// Get the reference to the "school" collection
+var collection = db.getCollection("school");
 
-  // Get the reference to the "school" collection
-  var collection = db.collection('school');
+// Insert a document
+var result = collection.insertOne({ name: "Holberton school" });
 
-  // Insert a document
-  collection.insertOne({ name: 'Holberton school' }, function(err, result) {
-    if (err) throw err;
+// Print the result
+printjson(result);
 
-    // Print the result
-    printjson(result);
-
-    // Close the connection
-    client.close();
-  });
-});
+// Exit the MongoDB shell
+quit();

@@ -1,0 +1,10 @@
+// my comment
+
+// Connect to the MongoDB server
+var conn = new Mongo();
+
+// Switch to the "my_db" database; create it if it doesn't exist
+var db = conn.getDB("my_db");
+
+// Print a message and exit
+print("switched to db my_db");

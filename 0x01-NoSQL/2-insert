@@ -1,0 +1,16 @@
+// my comment
+
+// Connect to the MongoDB server
+var conn = new Mongo();
+
+// Switch to the specified database; create it if it doesn't exist
+var db = conn.getDB("my_db");
+
+// Insert a document into the "school" collection
+var result = db.school.insertOne({ name: "Holberton school" });
+
+// Print the result
+print(result);
+
+// Exit the MongoDB shell
+quit();

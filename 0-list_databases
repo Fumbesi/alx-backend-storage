@@ -1,0 +1,26 @@
+// list_databases.js
+
+// Import the MongoDB client
+var MongoClient = require('mongodb').MongoClient;
+
+// Connection URL
+var url = 'mongodb://127.0.0.1:27017/';
+
+// Connect to the server
+MongoClient.connect(url, function(err, client) {
+  if (err) throw err;
+
+  // Get the list of databases
+  var adminDb = client.db('admin');
+  adminDb.admin().listDatabases(function(err, result) {
+    if (err) throw err;
+
+    // Print the list of databases
+    result.databases.forEach(function(db) {
+      print(db.name);
+    });
+
+    // Close the connection
+    client.close();
+  });
+});

@@ -1,0 +1,3 @@
+pub   rsa4096 2023-01-18 [SC] [expires: 2028-01-17]
+      E58830201F7DD82CD808AA84160D26BB1785BA38
+uid           MongoDB 7.0 Release Signing Key <packaging@mongodb.com>

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-8-all module
+Lists all documents in a MongoDB collection.
 """
 
 from pymongo.collection import Collection
@@ -8,13 +8,19 @@ from typing import List
 
 def list_all(mongo_collection: Collection) -> List[dict]:
     """
-    Lists all documents in the specified MongoDB collection.
+    Lists all documents in the MongoDB collection.
 
     Args:
-        mongo_collection (pymongo.collection.Collection): The pymongo collection object.
+        mongo_collection (Collection): The pymongo collection object.
 
     Returns:
-        list: A list of documents in the collection. Returns an empty list if no documents.
+        List[dict]: A list containing all documents in the collection.
     """
-    documents = list(mongo_collection.find())
-    return documents
+    return list(mongo_collection.find())
+
+if __name__ == "__main__":
+    client = MongoClient('mongodb://127.0.0.1:27017')
+    school_collection = client.my_db.school
+    schools = list_all(school_collection)
+    for school in schools:
+        print("[{}] {}".format(school.get('_id'), school.get('name')))

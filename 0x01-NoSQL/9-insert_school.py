@@ -1,18 +1,20 @@
 #!/usr/bin/env python3
-"""Python function that inserts a new document in a collection based on kwargs"""
+"""
+Define Python function that inserts a new document in a collection based
+on kwargs
+"""
 
-from pymongo.collection import Collection
 
-def insert_school(mongo_collection: Collection, **kwargs) -> str:
+def insert_school(mongo_collection, **kwargs):
     """
-    Inserts a new document in the MongoDB collection based on the provided kwargs.
+    The function `insert_school` inserts a document into a MongoDB
+    collection with the provided keyword arguments and returns the
+    inserted document's ID.
 
-    :param mongo_collection: The `mongo_collection` parameter is expected
-    to be a MongoDB collection object.
-    It represents a collection of documents in a MongoDB database.
-    :param kwargs: Key-value pairs representing the fields and values of the new document.
-    :return: The new _id of the inserted document.
+    :param mongo_collection: The `mongo_collection` parameter is the
+    collection in the MongoDB database where you want to insert the
+    school document
+    :return: the inserted ID of the document in the MongoDB collection.
     """
-    new_document = kwargs
-    result = mongo_collection.insert_one(new_document)
-    return str(result.inserted_id)
+    result = mongo_collection.insert_one(kwargs)
+    return result.inserted_id

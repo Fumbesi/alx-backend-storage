@@ -1,0 +1,29 @@
+// my comment
+
+// Connect to the MongoDB server
+var conn = new Mongo();
+
+// Get the database name from the command line arguments
+var dbName = arguments[0];
+
+// Switch to the specified database; create it if it doesn't exist
+var db = conn.getDB(dbName);
+
+// Print a message
+print("Switched to db " + dbName);
+
+// Get the reference to the "school" collection
+var collection = db.getCollection("school");
+
+// Update documents with name="Holberton school"
+var result = collection.update(
+  { name: "Holberton school" },
+  { $set: { address: "972 Mission street" } },
+  { multi: true }
+);
+
+// Print the result
+printjson(result);
+
+// Exit the MongoDB shell
+quit();

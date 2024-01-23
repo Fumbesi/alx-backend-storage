@@ -1,26 +1,18 @@
 #!/usr/bin/env python3
-"""
-Lists all documents in a MongoDB collection.
-"""
+"""Python function that lists all documents in a collection"""
 
-from pymongo.collection import Collection
-from typing import List
 
-def list_all(mongo_collection: Collection) -> List[dict]:
+def list_all(mongo_collection):
     """
-    Lists all documents in the MongoDB collection.
+    The function "list_all" retrieves all documents from a MongoDB
+    collection and returns them as a list.
 
-    Args:
-        mongo_collection (Collection): The pymongo collection object.
-
-    Returns:
-        List[dict]: A list containing all documents in the collection.
+    :param mongo_collection: The `mongo_collection` parameter is expected
+    to be a MongoDB collection object.
+    It represents a collection of documents in a MongoDB database
+    :return: a list of all documents in the given MongoDB collection.
     """
+    if mongo_collection is None:
+        return []
+
     return list(mongo_collection.find())
-
-if __name__ == "__main__":
-    client = MongoClient('mongodb://127.0.0.1:27017')
-    school_collection = client.my_db.school
-    schools = list_all(school_collection)
-    for school in schools:
-        print("[{}] {}".format(school.get('_id'), school.get('name')))

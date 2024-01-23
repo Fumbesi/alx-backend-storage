@@ -3,10 +3,8 @@
 // Connect to the MongoDB server
 var conn = new Mongo();
 
-// Get the database name from the command line arguments
-var dbName = arguments[0];
-
 // Switch to the specified database; create it if it doesn't exist
+var dbName = arguments[0];
 var db = conn.getDB(dbName);
 
 // Print a message
@@ -23,4 +21,3 @@ printjson(result);
 
 // Exit the MongoDB shell
 quit();
-
